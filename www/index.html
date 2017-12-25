@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="text" class="user"><br>
+    <input type="password" class="pwd"><br>
+    <input type="button" value="login" class="login">
+    <input type="button" value="register" class="register">
+    <script src="index.js"></script>
+    <script>
+        var register = document.querySelector('.register');
+        var login = document.querySelector('.login');
+        var user = document.querySelector('.user');
+        var pwd = document.querySelector('.pwd');
+
+        register.onclick = function(){
+            ajax({
+                url:'/user',
+                data:{action:'register',name:user.value,pwd:pwd.vlue},
+                success:function(data){
+                    alert(data.alt);
+                    if(data.alt){
+                        location.href = '/ok';
+                    }
+                }
+            })
+        };
+        login.onclick = function(){
+            ajax({
+                url:'/user',
+                data:{action:'login',name:user.value,pwd:pwd.vlue},
+                type:'post',
+                success:function(data){
+                    alert(data.alt);
+                    if(data.code === 0){
+                        location.href = '/ok';
+                    }
+                }
+            })
+        };
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
